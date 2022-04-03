@@ -52,7 +52,7 @@ class Usuarios {
 
       const token = jwt.sign({ id: usuario.id }, process.env.SEGREDO_LOGIN);
 
-      return res.status(200).json(token);
+      return res.status(200).json({ token });
     } catch (error) {
       return res.status(400).json({ erro: error.message });
     }
