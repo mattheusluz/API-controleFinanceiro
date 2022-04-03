@@ -1,10 +1,10 @@
 /* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const knex = require('../conexaodb');
 const schemaCadastrarUsuario = require('../validacoes/usuarios/cadastrarUsuarios');
 const schemaEditarUsuario = require('../validacoes/usuarios/editarUsuarios');
-const schemaLogin = require('../validacoes/usuarios/login');
+// const schemaLogin = require('../validacoes/usuarios/login');
 
 class Usuarios {
   async cadastrarUsuario(req, res) {
@@ -66,26 +66,26 @@ class Usuarios {
   }
 
   async login(req, res) {
-    const { senha, email } = req.body;
+    // const { senha, email } = req.body;
 
     try {
-      await schemaLogin.validate(req.body);
+      // await schemaLogin.validate(req.body);
 
-      const usuario = await knex('usuarios').where({ email }).first();
+      // const usuario = await knex('usuarios').where({ email }).first();
 
-      if (!usuario) {
-        return res.status(400).json({ erro: 'email e/ou senha incorretos' });
-      }
+      // if (!usuario) {
+      //   return res.status(400).json({ erro: 'email e/ou senha incorretos' });
+      // }
 
-      const senhaVerificada = await bcrypt.compare(senha, usuario.senha);
+      // const senhaVerificada = await bcrypt.compare(senha, usuario.senha);
 
-      if (!senhaVerificada) {
-        return res.status(400).json({ erro: 'email e/ou senha incorretos' });
-      }
+      // if (!senhaVerificada) {
+      //   return res.status(400).json({ erro: 'email e/ou senha incorretos' });
+      // }
 
-      const token = jwt.sign({ id: usuario.id }, process.env.SEGREDO_LOGIN);
+      // const token = jwt.sign({ id: usuario.id }, process.env.SEGREDO_LOGIN);
 
-      return res.status(200).json({ token });
+      return res.status(200).json(/* { token } */'teste');
     } catch (error) {
       return res.status(400).json({ erro: error.message });
     }
