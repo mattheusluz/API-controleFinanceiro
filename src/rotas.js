@@ -12,5 +12,6 @@ rotas.post('/login', Usuarios.login);
 rotas.use(FiltrosUsuarios.verificaLogin);
 
 rotas.get('/transacoes', Transacoes.listarTodas);
+rotas.post('/transacoes', Transacoes.cadastrarTransacao);
 
 module.exports = rotas;
