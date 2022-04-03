@@ -12,6 +12,7 @@ rotas.post('/login', Usuarios.login);
 rotas.use(FiltrosUsuarios.verificaLogin);
 
 rotas.get('/transacoes', Transacoes.listarTodas);
+rotas.get('/transacoes/:id', Transacoes.obterTransacao);
 rotas.post('/transacoes', Transacoes.cadastrarTransacao);
 rotas.put('/transacoes/:id', Transacoes.editarTransacao);
 rotas.delete('/transacoes/:id', Transacoes.excluirTransacao);
