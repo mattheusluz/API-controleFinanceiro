@@ -6,6 +6,8 @@ const rotas = Router();
 
 rotas.post('/usuarios', Usuarios.cadastrarUsuario);
 
+rotas.post('/login', Usuarios.login);
+
 rotas.get('/transacoes', Transacoes.listarTodas);
 
 module.exports = rotas;
