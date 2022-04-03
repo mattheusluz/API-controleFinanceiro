@@ -1,8 +1,11 @@
 const { Router } = require('express');
-const TransacoesControlador = require('./controladores/transacoes');
+const Transacoes = require('./controladores/transacoes');
+const Usuarios = require('./controladores/usuarios');
 
 const rotas = Router();
 
-rotas.get('/transacoes', TransacoesControlador.listarTodas);
+rotas.post('/usuarios', Usuarios.cadastrarUsuario);
+
+rotas.get('/transacoes', Transacoes.listarTodas);
 
 module.exports = rotas;
