@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const knex = require('../conexaodb');
-const schemaCadastroUsuario = require('../validacoes/usuarios/cadastroUsuarios');
+const schemaCadastrarUsuario = require('../validacoes/usuarios/cadastrarUsuarios');
 const schemaLogin = require('../validacoes/usuarios/login');
 
 class Usuarios {
@@ -9,7 +9,7 @@ class Usuarios {
   async cadastrarUsuario(req, res) {
     const { nome, email, senha } = req.body;
     try {
-      await schemaCadastroUsuario.validate(req.body);
+      await schemaCadastrarUsuario.validate(req.body);
 
       const emailEmUso = await knex('usuarios').where({ email }).first();
 

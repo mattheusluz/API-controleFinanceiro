@@ -1,6 +1,6 @@
 const yup = require('../configuracoes');
 
-const schemaCadastroTransacao = yup.object().shape({
+const schemaCadastrarTransacao = yup.object().shape({
   tipo: yup.boolean().required(),
   valor: yup.number().required(),
   categoria: yup.string().required(),
@@ -8,4 +8,4 @@ const schemaCadastroTransacao = yup.object().shape({
   descricao: yup.string().required(),
 });
 
-module.exports = schemaCadastroTransacao;
+module.exports = schemaCadastrarTransacao;

@@ -13,5 +13,6 @@ rotas.use(FiltrosUsuarios.verificaLogin);
 
 rotas.get('/transacoes', Transacoes.listarTodas);
 rotas.post('/transacoes', Transacoes.cadastrarTransacao);
+rotas.put('/transacoes/:id', Transacoes.editarTransacao);
 
 module.exports = rotas;
