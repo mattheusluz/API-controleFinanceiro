@@ -6,6 +6,7 @@ const FiltrosUsuarios = require('./filtros/usuarios');
 const rotas = Router();
 
 rotas.post('/usuarios', Usuarios.cadastrarUsuario);
+rotas.get('/teste', (req, res) => res.send('teste'));
 
 rotas.post('/login', Usuarios.login);
 
