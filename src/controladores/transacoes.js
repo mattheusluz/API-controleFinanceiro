@@ -1,9 +1,9 @@
+/* eslint-disable class-methods-use-this */
 const knex = require('../conexaodb');
 const schemaCadastrarTransacao = require('../validacoes/transacoes/cadastrarTransacoes');
 const schemaEditarTransacao = require('../validacoes/transacoes/editarTransacoes');
 
 class Transacoes {
-  // eslint-disable-next-line class-methods-use-this
   async listarTodas(req, res) {
     const { usuario } = req;
     try {
@@ -15,7 +15,6 @@ class Transacoes {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async cadastrarTransacao(req, res) {
     const { usuario } = req;
     const {
@@ -38,7 +37,6 @@ class Transacoes {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async editarTransacao(req, res) {
     const { id } = req.params;
     const {
@@ -56,6 +54,22 @@ class Transacoes {
       }
 
       return res.status(200).json({ mensagem: 'transação editada com sucesso' });
+    } catch (error) {
+      return res.status(400).json({ erro: error.message });
+    }
+  }
+
+  async excluirTransacao(req, res) {
+    const { id } = req.params;
+
+    try {
+      const transacao = await knex('transacoes').del().where({ id });
+
+      if (!transacao) {
+        return res.status(400).json({ erro: 'não foi possivel excluir a transação' });
+      }
+
+      return res.status(200).json({ mensagem: 'transacao excluída com suucesso' });
     } catch (error) {
       return res.status(400).json({ erro: error.message });
     }
