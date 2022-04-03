@@ -11,6 +11,8 @@ rotas.post('/login', Usuarios.login);
 
 rotas.use(FiltrosUsuarios.verificaLogin);
 
+rotas.put('/usuarios', Usuarios.editarUsuario);
+
 rotas.get('/transacoes', Transacoes.listarTodas);
 rotas.get('/transacoes/:id', Transacoes.obterTransacao);
 rotas.post('/transacoes', Transacoes.cadastrarTransacao);
