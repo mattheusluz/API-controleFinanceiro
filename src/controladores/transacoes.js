@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-const { format } = require('date-fns');
 const knex = require('../conexaodb');
 const schemaCadastrarTransacao = require('../validacoes/transacoes/cadastrarTransacoes');
 const schemaEditarTransacao = require('../validacoes/transacoes/editarTransacoes');
@@ -40,7 +39,7 @@ class Transacoes {
     try {
       await schemaCadastrarTransacao.validate(req.body);
 
-      const dataTransformada = format(new Date(data), 'dd,MM,yyy');
+      const dataTransformada = new Date(data);
 
       const transacao = await knex('transacoes').insert({
         tipo, valor, categoria, data: dataTransformada, descricao, usuario_id: usuario.id,
