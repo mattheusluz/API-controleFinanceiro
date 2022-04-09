@@ -39,8 +39,10 @@ class Transacoes {
     try {
       await schemaCadastrarTransacao.validate(req.body);
 
+      const dataTransformada = new Date(data);
+
       const transacao = await knex('transacoes').insert({
-        tipo, valor, categoria, data, descricao, usuario_id: usuario.id,
+        tipo, valor, categoria, dataTransformada, descricao, usuario_id: usuario.id,
       });
 
       if (!transacao) {
