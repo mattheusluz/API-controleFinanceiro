@@ -43,7 +43,7 @@ class Transacoes {
       const dataTransformada = format(new Date(data), 'dd,MM,yyy');
 
       const transacao = await knex('transacoes').insert({
-        tipo, valor, categoria, dataTransformada, descricao, usuario_id: usuario.id,
+        tipo, valor, categoria, data: dataTransformada, descricao, usuario_id: usuario.id,
       });
 
       if (!transacao) {
