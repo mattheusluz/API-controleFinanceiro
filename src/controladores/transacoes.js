@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 const knex = require('../conexaodb');
 const schemaCadastrarTransacao = require('../validacoes/transacoes/cadastrarTransacoes');
@@ -34,7 +35,7 @@ class Transacoes {
   async cadastrarTransacao(req, res) {
     const { usuario } = req;
     const {
-      tipo, valor, categoria, data, descricao,
+      tipo, valor, categoria, data, descricao, dia_semana,
     } = req.body;
     try {
       await schemaCadastrarTransacao.validate(req.body);
@@ -42,7 +43,13 @@ class Transacoes {
       const dataTransformada = new Date(data);
 
       const transacao = await knex('transacoes').insert({
-        tipo, valor, categoria, data: dataTransformada, descricao, usuario_id: usuario.id,
+        tipo,
+        valor,
+        categoria,
+        data: dataTransformada,
+        descricao,
+        usuario_id: usuario.id,
+        dia_semana,
       });
 
       if (!transacao) {
@@ -59,13 +66,13 @@ class Transacoes {
     const { usuario } = req;
     const { id } = req.params;
     const {
-      tipo, valor, categoria, data, descricao,
+      tipo, valor, categoria, data, descricao, dia_semana,
     } = req.body;
     try {
       await schemaEditarTransacao.validate(req.body);
 
       const transacao = await knex('transacoes').update({
-        tipo, valor, categoria, data, descricao,
+        tipo, valor, categoria, data, descricao, dia_semana,
       }).where({ id, usuario_id: usuario.id });
 
       if (!transacao) {
