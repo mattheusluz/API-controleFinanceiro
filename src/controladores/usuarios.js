@@ -90,6 +90,16 @@ class Usuarios {
       return res.status(400).json({ erro: error.message });
     }
   }
+
+  async obterUsuario(req, res) {
+    const { usuario } = req;
+
+    try {
+      return res.status(200).json(usuario);
+    } catch (error) {
+      return res.status(400).json({ erro: error.message });
+    }
+  }
 }
 
 module.exports = new Usuarios();
