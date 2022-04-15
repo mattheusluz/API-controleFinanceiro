@@ -15,7 +15,7 @@ class Usuarios {
       const emailEmUso = await knex('usuarios').where({ email }).first();
 
       if (emailEmUso) {
-        return res.status(400).json({ erro: 'Email informado ja está cadastrado no sistema' });
+        return res.status(400).json({ erro: 'email informado ja está cadastrado no sistema' });
       }
 
       const senhaCriptografada = await bcrypt.hash(senha, 10);
