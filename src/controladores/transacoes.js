@@ -42,7 +42,7 @@ class Transacoes {
       await schemaCadastrarTransacao.validate(req.body);
 
       console.log(data);
-      const novaData = new Date(data).getMonth() + new Date(data).getDay() + new Date(data).getFullYear();
+      const novaData = `${new Date(data).getMonth()}/${new Date(data).getDay()}/${new Date(data).getFullYear()}`;
       console.log(novaData);
 
       const transacao = await knex('transacoes').insert({
