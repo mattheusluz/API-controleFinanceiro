@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 const knex = require('../conexaodb');
@@ -40,11 +41,13 @@ class Transacoes {
     try {
       await schemaCadastrarTransacao.validate(req.body);
 
+      const novaData = new Date(data).getMonth() + new Date(data).getDay() + new Date(data).getFullYear();
+
       const transacao = await knex('transacoes').insert({
         tipo,
         valor,
         categoria,
-        data,
+        data: novaData,
         descricao,
         usuario_id: usuario.id,
         dia_semana,
