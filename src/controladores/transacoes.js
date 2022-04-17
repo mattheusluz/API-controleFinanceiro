@@ -39,9 +39,9 @@ class Transacoes {
       tipo, valor, categoria, data, descricao, dia_semana,
     } = req.body;
     try {
+      console.log(data);
       await schemaCadastrarTransacao.validate(req.body);
 
-      console.log(data);
       const novaData = `${new Date(data).getMonth()}/${new Date(data).getDay()}/${new Date(data).getFullYear()}`;
       console.log(novaData);
 
