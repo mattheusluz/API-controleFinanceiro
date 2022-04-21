@@ -48,7 +48,7 @@ class Usuarios {
           }
         }
       }
-
+      console.log('chegou aqui');
       const senhaVerificada = await bcrypt.compare(senha, usuario.senha);
       console.log(senhaVerificada);
 
