@@ -49,10 +49,14 @@ class Usuarios {
         }
       }
 
-      const senhaCriptografada = await bcrypt.hash(senha, 10);
+      const senhaVerificada = await bcrypt.compare(senha, usuario.senha);
+
+      if (!senhaVerificada) {
+        return res.status(400).json({ erro: 'email e/ou senha incorretos' });
+      }
 
       const usuarioAtualizado = await knex('usuarios')
-        .update({ nome, email, senha: senhaCriptografada })
+        .update({ nome, email })
         .where({ id: usuario.id });
 
       if (!usuarioAtualizado) {
