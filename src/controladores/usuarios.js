@@ -50,6 +50,7 @@ class Usuarios {
       }
 
       const senhaVerificada = await bcrypt.compare(senha, usuario.senha);
+      console.log(senhaVerificada);
 
       if (!senhaVerificada) {
         return res.status(400).json({ erro: 'senha incorreta' });
