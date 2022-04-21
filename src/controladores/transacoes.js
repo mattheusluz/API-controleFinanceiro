@@ -72,8 +72,15 @@ class Transacoes {
     try {
       await schemaEditarTransacao.validate(req.body);
 
+      const novaData = new Date(`${data.toString().substr(3, 2)}/${data.toString().substr(0, 2)}/${data.toString().substr(6, 4)}`);
+
       const transacao = await knex('transacoes').update({
-        tipo, valor, categoria, data, descricao, dia_semana,
+        tipo,
+        valor,
+        categoria,
+        data: novaData,
+        descricao,
+        dia_semana,
       }).where({ id, usuario_id: usuario.id });
 
       if (!transacao) {
