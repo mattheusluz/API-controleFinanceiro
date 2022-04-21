@@ -52,7 +52,7 @@ class Usuarios {
       const senhaVerificada = await bcrypt.compare(senha, usuario.senha);
 
       if (!senhaVerificada) {
-        return res.status(400).json({ erro: 'email e/ou senha incorretos' });
+        return res.status(400).json({ erro: 'senha incorreta' });
       }
 
       const usuarioAtualizado = await knex('usuarios')
