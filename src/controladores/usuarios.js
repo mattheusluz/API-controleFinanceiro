@@ -34,7 +34,7 @@ class Usuarios {
 
   async editarUsuario(req, res) {
     const { usuario } = req;
-    const { nome, email, senha } = req.body;
+    const { nome, email } = req.body;
     try {
       await schemaEditarUsuario.validate(req.body);
 
@@ -47,14 +47,6 @@ class Usuarios {
             return res.status(400).json({ erro: 'email já cadastrado para outro usuário.' });
           }
         }
-      }
-      console.log({ senha });
-      console.log(usuario.senha);
-      const senhaVerificada = await bcrypt.compare(senha, usuario.senha);
-      console.log(senhaVerificada);
-
-      if (!senhaVerificada) {
-        return res.status(400).json({ erro: 'senha incorreta' });
       }
 
       const usuarioAtualizado = await knex('usuarios')
